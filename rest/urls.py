@@ -14,6 +14,8 @@ Including another URLconf
     2. Add a URL to urlpatterns:  url(r'^blog/', include('blog.urls'))
 """
 from django.conf.urls import include, url
+from django.conf.urls.static import static
+from django.conf import settings
 from django.contrib import admin
 from rest_framework import routers
 from restapp import views
@@ -27,5 +29,5 @@ router.register(r'completed_task', views.CompletedTaskViewSet)
 urlpatterns = [
     url(r'^admin/', admin.site.urls),
     url(r'^', include(router.urls)),
+]+ static(settings.MEDIA_URL, document_root= settings.MEDIA_ROOT)
 
-]
